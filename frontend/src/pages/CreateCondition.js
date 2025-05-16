@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateConditionForm from '../components/CreateConditionForm';
+import BackButton from '../components/BackButton';
 
 const CreateReport = () => {
     const [error, setError] = useState(null);
@@ -38,9 +39,12 @@ const CreateReport = () => {
     };
 
     return (
+        <div>
+            <BackButton />
         <div className='login-container'>
             <h2>Create Condition Report</h2>
             <CreateConditionForm onSubmit={handleFormSubmit} error={error} user={user} />
+        </div>
         </div>
     );
 };

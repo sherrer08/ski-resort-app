@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FaStar, FaHeart } from 'react-icons/fa';
 import ResortDetails from "../components/ResortDetails";
 
 const Resort = () => {
@@ -55,8 +56,12 @@ const Resort = () => {
         <div className="home">
             <div className="resorts">
                 {resort && <ResortDetails resort={resort} />}
-                <p><strong>Average Rating: </strong>{averageRating === 0 ? 'No ratings yet' : averageRating}</p>
-                <p><strong>Total Favorites: </strong>{totalFavorites === 0 ? 'No favorites yet' : totalFavorites}</p>
+                <p>
+                    <strong>Average Rating: </strong>{averageRating === 0 ? 'No ratings yet' : averageRating} <FaStar className="star-icon" />
+                </p>
+                <p>
+                    <strong>Total Favorites: </strong>{totalFavorites === 0 ? 'No favorites yet' : totalFavorites} <FaHeart className="heart-icon" />
+                </p>
             </div>
         </div>
     )

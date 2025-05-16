@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import UpdateLiftForm from '../components/UpdateLiftForm';
+import BackButton from '../components/BackButton';
 
 const UpdateLiftStatus = () => {
   const { resortId, liftId } = useParams();
@@ -21,12 +22,15 @@ const UpdateLiftStatus = () => {
   };
 
   return (
+    <div>
+      <BackButton />
     <div className="update-lift-container">
       <UpdateLiftForm
         resortId={resortId}
         liftId={liftId}
         onSubmit={handleUpdate}
       />
+    </div>
     </div>
   );
 };

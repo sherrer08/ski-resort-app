@@ -2,10 +2,14 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./graphql/schema');
+
 const resortRoutes = require('./routes/resorts');
 const trailRoutes = require('./routes/trails');
 const conditionRoutes = require('./routes/conditions');
 const userRoutes = require('./routes/user');
+const cors = require('cors');
 
 const app = express();
 
@@ -21,6 +25,17 @@ app.use('/api/trails', trailRoutes);
 app.use('/api/conditions', conditionRoutes);
 app.use('/api/users', userRoutes);
 
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true
+}));
+
+
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
+}))
+
 mongoose.connect(process.env.MONGO_URI, {
     dbName: 'SkiResortApp'
 })
@@ -29,6 +44,7 @@ mongoose.connect(process.env.MONGO_URI, {
         app.listen(PORT, () => {
             console.log('Server is running on port: ', process.env.PORT);
             console.log('Connected to database:', mongoose.connection.name);
+            console.log('GraphQL endpoint: http://localhost:' + PORT + '/graphql');
         }); 
     })
     .catch ((error) => {

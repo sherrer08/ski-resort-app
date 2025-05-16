@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddTrailForm from "../components/AddTrailForm";
+import BackButton from "../components/BackButton";
 
 const AddTrail = () => {
     const [error, setError] = useState(null);
@@ -47,9 +48,12 @@ const AddTrail = () => {
     }
 
     return (
+        <div>
+            <BackButton />
         <div className="login-container">
             <h2>Add Trail</h2>
             <AddTrailForm onSubmit={handleFormSubmit} error={error} user={user}/>
+        </div>
         </div>
     )
 }

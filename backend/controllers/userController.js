@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const createToken = require('../utils/createToken');
 
 const registerUser = async (req, res) => {
     const { username, email, password, isAdmin } = req.body;
@@ -41,7 +42,7 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin }, "your_secret_key", { expiresIn: "1h" });
+        const token = createToken(user);
 
         res.status(200).json({ message: "Login successfull", token, user });
     } catch (error) {

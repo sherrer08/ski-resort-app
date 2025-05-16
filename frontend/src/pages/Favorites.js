@@ -1,52 +1,44 @@
-import { useEffect, useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_USER_FAVORITES } from "../graphql/queries";
+import { REMOVE_FAVORITE } from "../graphql/mutations";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import FavoritesCard from "../components/FavoritesCard";
+import BackButton from "../components/BackButton";
 
 const FavoritesPage = () => {
-    const [favorites, setFavorites] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    useEffect (() => {
-        const fetchData = async () => {
-            try {
-                const userRes = await fetch(`/api/users/${user._id}`, {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`
-                    }
-                });
-                const userData = await userRes.json();
-
-                const resortsRes = await fetch('/api/resorts');
-                const resortsData = await resortsRes.json();
-
-                const favoriteResorts = resortsData.filter((resort) => 
-                    userData.favorites.includes(resort._id)
-                );
-
-                setFavorites(favoriteResorts);
-                setLoading(false);
-            } catch (error) {
-                console.error('Failed to load favorites:', error);
-                setLoading(false);
+    const { user, setUser } = useContext(UserContext);
+    const [removeFavorite] = useMutation(REMOVE_FAVORITE, {
+        refetchQueries: [
+            {
+                query: GET_USER_FAVORITES,
+                variables: { id: user._id }
             }
-        };
-
-        fetchData();
-    }, [user]);
+        ],
+        awaitRefetchQueries: true
+    });
+    const { loading, error, data } = useQuery(GET_USER_FAVORITES, {
+        variables: { id: user?._id },
+        skip: !user,
+        fetchPolicy: "network-only"
+    });
 
     const handleRemoveFavorite = async (resortId) => {
         try {
-            const res = await fetch(`/api/users/favorites/${user._id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                },
-                body: JSON.stringify({ resortId })
+            const { data: mutationData } = await removeFavorite({
+                variables: {
+                    userId: user._id,
+                    resortId: resortId
+                }
             });
 
-            if(res.ok) {
-                setFavorites(prev => prev.filter(resort => resort._id !== resort._id));
+            if(mutationData?.removeFavorite) {
+                const updatedUser = {
+                    ...user,
+                    favorites: mutationData.removeFavorite.favorites.map(fav => fav._id)
+                };
+                setUser(updatedUser);
+                localStorage.setItem('user', JSON.stringify(updatedUser));
             } else {
                 console.error('Failed to remove favorite');
             }
@@ -56,9 +48,13 @@ const FavoritesPage = () => {
     };
 
     if (loading) return <div>Loading Favorites...</div>;
+    if (error || !data?.getUser) return <div>Error loading favorites.</div>
+
+    const favorites = data.getUser.favorites;
 
     return (
         <div className="favorites-container">
+            <BackButton />
             <h2>Your Favorite Resorts</h2>
             {favorites.length === 0 ? (
                 <p className="no-favorites">You haven't added any favorites yet.</p>

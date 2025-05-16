@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_TRAILS_BY_RESORT } from "../graphql/queries";
 import TrailsDetails from "../components/TrailsDetails";
+import BackButton from "../components/BackButton";
 
 const Trails = () => {
     const { resortId } = useParams()
-    const [trails, setTrails] = useState([])
+    const { loading, error, data } = useQuery(GET_TRAILS_BY_RESORT, {
+        variables: {id: resortId},
+    });
 
-    useEffect(() => {
-        const fetchTrails = async() => {
-            const response = await fetch(`/api/trails/resort/${resortId}`)
-            const json = await response.json()
+    if (loading) return <p>Loading Trails...</p>;
+    if (error) return <p>Error loading trails...</p>;
 
-            if (response.ok) {
-                setTrails(json)
-            }
-        }
-        
-        fetchTrails()
-    }, [resortId])
+    const trails = data.getResort?.trails || [];
 
     return (
+        <div>
+            <BackButton />
         <div className="home">
             <div className="resorts">
                 {trails.length > 0 ? (
@@ -31,7 +30,8 @@ const Trails = () => {
                     )}
             </div>
         </div>
+        </div>
     )
 }
 
-export default Trails
+export default Trails;

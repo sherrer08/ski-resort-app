@@ -1,4 +1,5 @@
 const express = require('express');
+const requireAuth = require('../middleware/requireAuth');
 
 const {
     createCondition,
@@ -10,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.post('/', createCondition);
+router.post('/', requireAuth, createCondition);
 
 router.get('/:resortId', getConditionsByResort);
 

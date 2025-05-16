@@ -1,4 +1,4 @@
-const FavoritesCard = ({ resort, onRemove}) => {
+const FavoritesCard = ({ resort, onRemove }) => {
     return (
         <div className="favorite-card">
             <h4>{resort.name}</h4>

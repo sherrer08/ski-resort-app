@@ -6,7 +6,7 @@ const createCondition = async (req, res) => {
     const { resort, user, description, rating } = req.body;
 
     try {
-        const condition = await Condition.create({ resort, user, description, rating });
+        const condition = await Condition.create({ resort, user: req.user.userId, description, rating });
         res.status(200).json(condition);
     } catch (error) {
         res.status(400).json({ message: error.message });

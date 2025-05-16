@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ConditionsDetails from '../components/ConditionsDetails';
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 const Reports = () => {
     const { resortId } = useParams();
@@ -21,6 +22,8 @@ const Reports = () => {
     }, [resortId])
 
     return (
+        <div>
+            <BackButton />
         <div className="home">
             <div className="resorts">
             {reports.length > 0 ? (
@@ -34,6 +37,7 @@ const Reports = () => {
                 <p><strong>Create Condition Report</strong></p>
             </Link>
             </div>
+        </div>
         </div>
     )
 }

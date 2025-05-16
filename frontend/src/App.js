@@ -1,4 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
+import { ApolloProvider } from '@apollo/client';
+import client from './graphql/client';
+import 'leaflet/dist/leaflet.css';
 
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
@@ -17,8 +21,10 @@ import UpdateLiftStatus from './pages/UpdateLift';
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <div className="App">
       <BrowserRouter>
+      <UserProvider>
         <Navbar />
         <div className='pages'>
           <Routes>
@@ -88,8 +94,10 @@ function App() {
             />
           </Routes>
         </div>
+      </UserProvider>
       </BrowserRouter>
     </div>
+    </ApolloProvider>
   );
 }
 

@@ -1,3 +1,4 @@
+import BackButton from '../components/BackButton';
 import ResortForm from '../components/ResortForm';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,9 +29,12 @@ const AddResort = () => {
     };
 
     return (
+        <div>
+            <BackButton />
         <div className='login-container'>
             <h2>Add New Resort</h2>
             <ResortForm onSubmit={handleAddResort}/>
+        </div>
         </div>
     );
 };
