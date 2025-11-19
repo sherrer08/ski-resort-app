@@ -16,3 +16,24 @@ Features:
 - Responsive UI – Clean, mobile-friendly React interface.
 
 Tech Stack - MERN(MongoDb, Express, React, Node.js)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [npm](https://www.npmjs.com/) (comes with Node)
+- A MongoDB Atlas cluster (or local MongoDB instance)
+
+### 1. Clone the Repository
+
+
+- Ensure that node and node package manager are installed on your computer.
+- Either clone the git repository with 'git clone https://cssegit.monmouth.edu/s1368440/agile-minds.git' inside of a powershell or commandline window, or simply download the code from gitlab.
+- Open a powershell or commandline window and navigate to the 'ClergyConnectFrontend' folder.
+- Type 'npm install' to install all required packages.
+- Type 'npm start' to start the frontend React server
+- Open another powershell or commandline window and navigate to the 'backend' folder.
+- Type 'npm install' to install all required packages.
+- Type 'node server.js' to start the backend node server.
+- The webpage should open to your default browser.
