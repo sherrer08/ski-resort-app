@@ -1,39 +1,100 @@
-Full-Stack Application Project - Michael Sherrer
+# Ski Resort Conditions App
 
-Ski Resort App
+A full-stack MERN application for real-time ski resort reports. Check live trail openings, lift statuses, and user-submitted condition reports — all in one place.
 
-A full-stack MERN application for real-time ski resort reports.
-Get real-time updates on trail openings, lift statuses, and user-submitted condition reports — all in one place.
-The Ski Resort Conditions App allows skiers and snowboarders to check live resort information, including open trails, lift wait times, and user-posted condition reports.
-Admins can update trails and lifts directly, while users can rate, review, and favorite resorts to track conditions over time.
+---
 
-Features:
-- Real-time Conditions – See trail openings, lift queues, and weather data.
-- User Reports – Submit condition reports with ratings and comments.
-- Favorites System – Save your favorite resorts for quick access.
-- Role-Based Access – Admin users can update lift and trail data.
-- Authentication – Secure JWT-based login and registration.
-- Responsive UI – Clean, mobile-friendly React interface.
+## Features
 
-Tech Stack - MERN(MongoDB, Express, React, Node.js)
+- **Real-Time Conditions** – View trail openings, lift queue times, and current weather data
+- **User Reports** – Submit condition reports with ratings and comments
+- **Favorites System** – Save and track your favorite resorts
+- **Role-Based Access** – Admin users can update lift and trail data directly
+- **JWT Authentication** – Secure login and registration
+- **Responsive UI** – Clean, mobile-friendly React interface
+
+---
+
+## Tech Stack
+
+| Layer     | Technology                        |
+|-----------|-----------------------------------|
+| Frontend  | React, CSS                        |
+| Backend   | Node.js, Express                  |
+| Database  | MongoDB (Atlas or local)          |
+| Auth      | JSON Web Tokens (JWT)             |
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+ recommended)
-- [npm](https://www.npmjs.com/) (comes with Node)
-- A MongoDB Atlas cluster (or local MongoDB instance)
+- [Node.js](https://nodejs.org/) v18 or higher
+- [npm](https://www.npmjs.com/) (included with Node.js)
+- A [MongoDB Atlas](https://www.mongodb.com/atlas) cluster or a local MongoDB instance
 
-### 1. Installation and Setup
+### 1. Clone the Repository
 
+```bash
+git clone https://github.com/sherrer08/ski-resort-app.git
+cd ski-resort-app
+```
 
-- Ensure that Node and the Node package manager are installed on your computer.
-- Either clone the git repository with ```git clone https://github.com/sherrer08/ski-resort-app.git``` inside of a PowerShell or command-line window, or simply download the code from GitHub.
-- Open a PowerShell or command-line window and navigate to the 'frontend' folder.
-- Type ```npm install``` to install all required packages.
-- Type ```npm start``` to start the frontend React server
-- Open another PowerShell or command-line window and navigate to the 'backend' folder.
-- Type ```npm install``` to install all required packages.
-- Type ```node server.js``` to start the backend node server.
-- The webpage should open in your default browser.
+### 2. Configure Environment Variables
+
+Copy the example environment file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and update the following:
+
+```
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+```
+
+### 3. Install Dependencies & Start the Backend
+
+```bash
+cd backend
+npm install
+node server.js
+```
+
+The backend will run at `http://localhost:5000`.
+
+### 4. Install Dependencies & Start the Frontend
+
+Open a new terminal window:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The app will open in your default browser at `http://localhost:3000`.
+
+---
+
+## Project Structure
+
+```
+ski-resort-app/
+├── backend/        # Express API, routes, models, middleware
+├── frontend/       # React app, components, pages
+├── .env.example    # Environment variable template
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Author
+
+**Michael Sherrer**  
+[GitHub](https://github.com/sherrer08)
