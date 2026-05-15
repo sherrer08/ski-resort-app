@@ -29,8 +29,8 @@ Tech Stack - MERN(MongoDb, Express, React, Node.js)
 
 
 - Ensure that node and node package manager are installed on your computer.
-- Either clone the git repository with 'git clone https://cssegit.monmouth.edu/s1368440/agile-minds.git' inside of a powershell or commandline window, or simply download the code from gitlab.
-- Open a powershell or commandline window and navigate to the 'ClergyConnectFrontend' folder.
+- Either clone the git repository with 'git clone https://github.com/sherrer08/ski-resort-app.git' inside of a powershell or commandline window, or simply download the code from GitHub.
+- Open a powershell or commandline window and navigate to the 'frontend' folder.
 - Type 'npm install' to install all required packages.
 - Type 'npm start' to start the frontend React server
 - Open another powershell or commandline window and navigate to the 'backend' folder.
