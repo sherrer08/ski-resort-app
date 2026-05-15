@@ -15,7 +15,7 @@ Features:
 - Authentication – Secure JWT-based login and registration.
 - Responsive UI – Clean, mobile-friendly React interface.
 
-Tech Stack - MERN(MongoDb, Express, React, Node.js)
+Tech Stack - MERN(MongoDB, Express, React, Node.js)
 
 ## Getting Started
 
