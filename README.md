@@ -29,7 +29,7 @@ Tech Stack - MERN(MongoDB, Express, React, Node.js)
 
 
 - Ensure that Node and the Node package manager are installed on your computer.
-- Either clone the git repository with 'git clone https://github.com/sherrer08/ski-resort-app.git' inside of a powershell or commandline window, or simply download the code from GitHub.
+- Either clone the git repository with ```git clone https://github.com/sherrer08/ski-resort-app.git``` inside of a PowerShell or command-line window, or simply download the code from GitHub.
 - Open a PowerShell or command-line window and navigate to the 'frontend' folder.
 - Type ```npm install``` to install all required packages.
 - Type ```npm start``` to start the frontend React server
